@@ -37,7 +37,6 @@ router.route('/users')
   .post(async (req, res) => {
     let userData = req.body
     try {
-      userData.cofirmationCode = ''
       userData.photo = "https://sguru.org/wp-content/uploads/2017/06/steam-avatar-profile-picture-1497.png"
       userData.profile = "user"
       userData.password = sha512(userData.password)
