@@ -5,11 +5,9 @@ const { sha512 } = require('js-sha512');
 const router = express.Router()
 const passport = require('passport')
 const axios = require('axios')
-const jwt = require('jsonwebtoken')
 
 const songModel = require('../models/songModel')
 const userModel = require('../models/userModel')
-const config = require('../modules/config')
 
 const authMiddleware = require('../modules/authenticator')
 const onlyRegisteredAccess = authMiddleware(true, ['user', 'admin'])
@@ -154,6 +152,9 @@ router.route('/youtube/callback')
           newSong = await songModel.findOneAndUpdate({ id_web: cancion.id }, foundSong, { new: true }).exec()
 
           foundUser.songs.push(newSong._id)
+          if(!foundUser.platform) {
+            foundUser.platform = "Youtube"
+          }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
 
@@ -228,6 +229,9 @@ router.route('/spotify/callback')
           newSong = await songModel(newSong).save()
           console.log("La cancion no existe")
           foundUser.songs.push(newSong._id)
+          if(!foundUser.platform) {
+            foundUser.platform = "Spotify"
+          }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
       });
