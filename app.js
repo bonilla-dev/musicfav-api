@@ -13,8 +13,12 @@ const database = require('./modules/database')
 const app = express()
 
 app.use(bearerToken())
-app.use(cors())
-
+app.use(cors(
+  {
+    origin: "localhost:3000",
+    credentials: true
+  }
+));
 app.use(passport.initialize())
 app.use(express.json())
 require('./modules/passport')
