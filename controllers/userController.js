@@ -163,6 +163,9 @@ router.route('/youtube/callback')
           newSong = await songModel(newSong).save()
           console.log("La cancion no existe")
           foundUser.songs.push(newSong._id)
+          if(!foundUser.platforms) {
+            foundUser.platforms = "Youtube"
+          }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
       });
@@ -221,6 +224,9 @@ router.route('/spotify/callback')
           newSong = await songModel.findOneAndUpdate({ id_web: cancion.track.id }, foundSong, { new: true }).exec()
 
           foundUser.songs.push(newSong._id)
+          if(!foundUser.platforms) {
+            foundUser.platforms = "Spotify"
+          }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
 
@@ -229,8 +235,8 @@ router.route('/spotify/callback')
           newSong = await songModel(newSong).save()
           console.log("La cancion no existe")
           foundUser.songs.push(newSong._id)
-          if(!foundUser.platform) {
-            foundUser.platform = "Spotify"
+          if(!foundUser.platforms) {
+            foundUser.platforms = "Spotify"
           }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
