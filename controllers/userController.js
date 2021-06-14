@@ -169,7 +169,7 @@ router.route('/youtube/callback')
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
       });
-      res.redirect('/');
+      res.redirect(config.WEB_URL);
     } catch (error) {
       res.status(404).json({ message: error.message })
     }
@@ -242,7 +242,7 @@ router.route('/spotify/callback')
         }
       });
       
-      res.redirect('/');
+      res.redirect(config.WEB_URL);
     } catch (error) {
       res.status(404).json({ message: error.message })
     }
