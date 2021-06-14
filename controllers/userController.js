@@ -105,7 +105,6 @@ router.route('/users/:userId')
   })
 router.route('/users/:userId/youtube')
   .get((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
     const userId = req.params.userId
     req.app.set('userId', userId)
     passport.authenticate('youtube')
@@ -176,7 +175,6 @@ router.route('/youtube/callback')
 
 router.route('/users/:userId/spotify')
   .get((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
     const userId = req.params.userId
     req.app.set('userId', userId)
     passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private', 'user-library-read'],
