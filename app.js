@@ -13,9 +13,7 @@ const database = require('./modules/database')
 const app = express()
 
 app.use(bearerToken())
-app.use(cors(
-  configCors.application.cors.serve
-));
+app.use(cors());
 app.use(passport.initialize())
 app.use(express.json())
 require('./modules/passport')
