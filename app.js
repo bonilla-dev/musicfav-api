@@ -12,8 +12,16 @@ const database = require('./modules/database')
 
 const app = express()
 
+const corsOptions = {
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}
+
+
 app.use(bearerToken())
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(passport.initialize())
 app.use(express.json())
 require('./modules/passport')
