@@ -153,7 +153,7 @@ router.route('/youtube/callback')
 
           foundUser.songs.push(newSong._id)
           if(!foundUser.platforms.includes("Youtube")) {
-            foundUser.platforms = "Youtube"
+            foundUser.platforms.push("Youtube")
           }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
@@ -164,7 +164,7 @@ router.route('/youtube/callback')
           console.log("La cancion no existe")
           foundUser.songs.push(newSong._id)
           if(!foundUser.platforms.includes("Youtube")) {
-            foundUser.platforms = "Youtube"
+            foundUser.platforms.push("Youtube")
           }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
@@ -172,7 +172,6 @@ router.route('/youtube/callback')
     } catch (error) {
       res.status(404).json({ message: error.message })
     }
-
   })
 
 router.route('/users/:userId/spotify')
@@ -224,7 +223,7 @@ router.route('/spotify/callback')
 
           foundUser.songs.push(newSong._id)
           if(!foundUser.platforms.includes("Spotify")) {
-            foundUser.platforms = "Spotify"
+            foundUser.platforms.push("Spotify")
           }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
@@ -235,12 +234,11 @@ router.route('/spotify/callback')
           console.log("La cancion no existe")
           foundUser.songs.push(newSong._id)
           if(!foundUser.platforms.includes("Spotify")) {
-            foundUser.platforms = "Spotify"
+            foundUser.platforms.push("Spotify")
           }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
       });
-  
     } catch (error) {
       res.status(404).json({ message: error.message })
     }
