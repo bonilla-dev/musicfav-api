@@ -2,7 +2,7 @@
   "name": "musicfav-api",
   "version": "1.0.0",
   "engines": {
-    "node": "16.2.0"
+    "node": "14.17.0"
   },
   "main": "index.js",
   "license": "MIT",
