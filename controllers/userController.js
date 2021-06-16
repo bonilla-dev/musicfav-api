@@ -142,7 +142,7 @@ router.route('/youtube/callback')
           image: cancion.snippet.thumbnails.default.url,
           author: cancion.snippet.videoOwnerChannelTitle,
           users: [],
-          preview_url: cancion.snippet.resourceId.videoId,
+          preview_url: `https://www.youtube.com/watch?v=${cancion.snippet.resourceId.videoId}`,
           platform: "https://mpng.subpng.com/20200216/py/transparent-icon-youtube-logo-youtube-copyright-strike-kacperniszonampaposs-profile-anilist5eb0d45ea51fa2.7624506715886470066764.jpg"
         }
         const foundSong = await songModel.findOne({ id_web: cancion.id }).exec()
