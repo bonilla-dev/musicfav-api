@@ -169,6 +169,7 @@ router.route('/youtube/callback')
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
       });
+        
     } catch (error) {
       res.status(404).json({ message: error.message })
     }
