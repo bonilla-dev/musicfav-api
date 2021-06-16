@@ -143,7 +143,7 @@ router.route('/youtube/callback')
           author: cancion.snippet.videoOwnerChannelTitle,
           users: [],
           preview_url: cancion.snippet.resourceId.videoId,
-          platform: "https://c0.klipartz.com/pngpicture/982/799/gratis-png-logo-de-youtube-logo-de-youtube-marketing-en-internet-suscribirse.png"
+          platform: "https://jsmcentro.org/wp-content/uploads/2018/04/Logo-YouTube.png"
         }
         const foundSong = await songModel.findOne({ id_web: cancion.id }).exec()
         if (foundSong && !foundSong.users.includes(userId)) {
