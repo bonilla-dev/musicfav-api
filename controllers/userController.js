@@ -169,7 +169,7 @@ router.route('/youtube/callback')
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
       });
-      res.redirect('http://localhost:3000/home');
+      res.status(301).redirect('http://localhost:3000/home');
     } catch (error) {
       res.status(404).json({ message: error.message })
     }
@@ -240,7 +240,7 @@ router.route('/spotify/callback')
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
       });
-      res.redirect('http://localhost:3000/home');
+      res.status(301).redirect('http://localhost:3000/home');
     } catch (error) {
       res.status(404).json({ message: error.message })
     }
