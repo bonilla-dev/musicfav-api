@@ -143,7 +143,7 @@ router.route('/youtube/callback')
           author: cancion.snippet.videoOwnerChannelTitle,
           users: [],
           preview_url: cancion.snippet.resourceId.videoId,
-          platform: "hhttps://w7.pngwing.com/pngs/523/896/png-transparent-youtube-logo-youtube-red-logo-sunny-leone-angle-rectangle-brand.png"
+          platform: "https://c0.klipartz.com/pngpicture/982/799/gratis-png-logo-de-youtube-logo-de-youtube-marketing-en-internet-suscribirse.png"
         }
         const foundSong = await songModel.findOne({ id_web: cancion.id }).exec()
         if (foundSong && !foundSong.users.includes(userId)) {
