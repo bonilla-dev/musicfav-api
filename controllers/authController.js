@@ -7,8 +7,6 @@ const jwt = require('jsonwebtoken')
 
 const config = require('../modules/config')
 
-
-
 router.route('/auth/login')
   .post(async (req, res, next) => {
     passport.authenticate('login', async (error, user) => {
