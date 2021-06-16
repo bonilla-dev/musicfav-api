@@ -142,8 +142,8 @@ router.route('/youtube/callback')
           image: cancion.snippet.thumbnails.default.url,
           author: cancion.snippet.videoOwnerChannelTitle,
           users: [],
-          preview_url: `https://www.youtube.com/watch?v=${cancion.snippet.resourceId.videoId}`,
-          platform: "https://mpng.subpng.com/20200216/py/transparent-icon-youtube-logo-youtube-copyright-strike-kacperniszonampaposs-profile-anilist5eb0d45ea51fa2.7624506715886470066764.jpg"
+          preview_url: cancion.snippet.resourceId.videoId,
+          platform: "hhttps://w7.pngwing.com/pngs/523/896/png-transparent-youtube-logo-youtube-red-logo-sunny-leone-angle-rectangle-brand.png"
         }
         const foundSong = await songModel.findOne({ id_web: cancion.id }).exec()
         if (foundSong && !foundSong.users.includes(userId)) {
