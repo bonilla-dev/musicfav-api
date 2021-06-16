@@ -30,7 +30,8 @@ router.route('/auth/login')
             lastname: user.lastname,
             email: user.email,
             profile: user.profile,
-            photo: user.photo
+            photo: user.photo,
+            platforms: user.platforms
           }
 
           const token = jwt.sign(payload, config.APP_SECRET, {
