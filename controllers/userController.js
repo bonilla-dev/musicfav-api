@@ -152,8 +152,8 @@ router.route('/youtube/callback')
           newSong = await songModel.findOneAndUpdate({ id_web: cancion.id }, foundSong, { new: true }).exec()
 
           foundUser.songs.push(newSong._id)
-          if(!foundUser.platform) {
-            foundUser.platform = "Youtube"
+          if(!foundUser.platforms.includes("Youtube")) {
+            foundUser.platforms = "Youtube"
           }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
         }
@@ -163,7 +163,7 @@ router.route('/youtube/callback')
           newSong = await songModel(newSong).save()
           console.log("La cancion no existe")
           foundUser.songs.push(newSong._id)
-          if(!foundUser.platforms) {
+          if(!foundUser.platforms.includes("Youtube")) {
             foundUser.platforms = "Youtube"
           }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
@@ -224,7 +224,7 @@ router.route('/spotify/callback')
           newSong = await songModel.findOneAndUpdate({ id_web: cancion.track.id }, foundSong, { new: true }).exec()
 
           foundUser.songs.push(newSong._id)
-          if(!foundUser.platforms) {
+          if(!foundUser.platforms.includes("Spotify")) {
             foundUser.platforms = "Spotify"
           }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
@@ -235,7 +235,7 @@ router.route('/spotify/callback')
           newSong = await songModel(newSong).save()
           console.log("La cancion no existe")
           foundUser.songs.push(newSong._id)
-          if(!foundUser.platforms) {
+          if(!foundUser.platforms.includes("Spotify")) {
             foundUser.platforms = "Spotify"
           }
           await userModel.findByIdAndUpdate(foundUser._id, foundUser, { new: true }).exec()
@@ -248,18 +248,6 @@ router.route('/spotify/callback')
     }
   })
 
-router.route('/users/:userId/profile', passport.authenticate('jwt', { session: false })) 
-.get((req, res, next) => {
-  try {
-    res.json({
-      message: 'You did it!',
-      user: req.user,
-      token: req.token,
-    })
-  } catch (error) {
-    res.json(error)
-  }
-})
 
 router.route('/users/:userId/songs')
 .get(onlyRegisteredAccess, async (req, res) => {
