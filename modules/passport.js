@@ -11,12 +11,12 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const userModel = require('../models/userModel')
 const config = require('./config')
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
     done(err, user);
   });
 });
@@ -58,18 +58,18 @@ passport.use(new YoutubeV3Strategy({
   callbackURL: config.GOOGLE_REDIRECT,
   scope: ['https://www.googleapis.com/auth/youtube.readonly']
 },
-function(accessToken, refreshToken, profile, done) {
-    return done(null, {profile, accessToken});
-}
+  function (accessToken, refreshToken, profile, done) {
+    return done(null, { profile, accessToken });
+  }
 ));
 
-passport.use(new SpotifyStrategy({
-      clientID: config.SPOTIFY_CLIENT_ID,
-      clientSecret: config.SPOTIFY_CLIENT_SECRET,
-      callbackURL: config.SPOTIFY_REDIRECT
-    },
-    function(accessToken, refreshToken, expires_in, profile, done) {
-        return done(null, {accessToken, refreshToken, profile})
-    }
-  )
-);
+// passport.use(new SpotifyStrategy({
+//       clientID: config.SPOTIFY_CLIENT_ID,
+//       clientSecret: config.SPOTIFY_CLIENT_SECRET,
+//       callbackURL: config.SPOTIFY_REDIRECT
+//     },
+//     function(accessToken, refreshToken, expires_in, profile, done) {
+//         return done(null, {accessToken, refreshToken, profile})
+//     }
+//   )
+// );
